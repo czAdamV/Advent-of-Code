@@ -13,8 +13,14 @@ pub fn main() -> Result<(), String> {
     let mut input = vec![];
     stdin().read_to_end(&mut input).unwrap();
 
-    println!("{}", start(input.as_ref(), 4).unwrap());
-    println!("{}", start(input.as_ref(), 14).unwrap());
+    println!(
+        "{}",
+        start(input.as_ref(), 4).ok_or("No packet found in datastream.")?
+    );
+    println!(
+        "{}",
+        start(input.as_ref(), 14).ok_or("No message found in datastream.")?
+    );
 
     Ok(())
 }
